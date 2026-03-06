@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Home",
+    "actress": "Actress",
+    "presenter": "Presenter",
+    "services": "Services",
+    "gallery": "Gallery",
+    "agenda": "Agenda",
+    "contact": "Contact"
+  },
+  "home": {
+    "heroTitle": "Diana Fes",
+    "heroSubtitle": "Actress · Presenter · Trainer",
+    "heroDescription": "Passion for performing arts, communication and personal development",
+    "heroCta": "Contact me",
+    "aboutTitle": "About me",
+    "aboutText": "Actress and presenter with over 10 years of experience in theatre, television and corporate events. Passionate about connecting with audiences and conveying emotions through art.",
+    "portfolioTitle": "Discover my work",
+    "eventsTitle": "Upcoming events",
+    "noEvents": "No events currently scheduled."
+  },
+  "actress": {
+    "title": "Actress",
+    "subtitle": "Artistic career and stage work",
+    "videobook": "Videobook",
+    "photos": "Photos",
+    "shows": "Shows",
+    "cv": "Artistic CV",
+    "videobookDesc": "A selection of my audiovisual and stage works",
+    "photosDesc": "Professional photo gallery",
+    "showsDesc": "Available shows for booking",
+    "cvDesc": "Professional artistic training and experience"
+  },
+  "presenter": {
+    "title": "Presenter",
+    "subtitle": "Hosted events and galas",
+    "videosTitle": "Event videos",
+    "featuredTitle": "Featured events"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Professional training and development services",
+    "psychology": "Psychology",
+    "psychologyDesc": "Individual and group sessions for emotional wellbeing",
+    "psychologyOnline": "Online sessions",
+    "psychologyPresential": "In-person sessions",
+    "career": "Career Guidance",
+    "careerDesc": "Professional advice to boost your career",
+    "careerAdvice": "Professional consulting",
+    "training": "Training",
+    "trainingDesc": "Tailored training for companies and professionals",
+    "trainingCompanies": "Corporate training",
+    "trainingWorkshops": "Group workshops",
+    "trainingDevelopment": "Professional development",
+    "learnMore": "Learn more"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Visual portfolio of my work",
+    "all": "All",
+    "photos": "Photos",
+    "videos": "Videos",
+    "actressCategory": "Actress",
+    "presenterCategory": "Presenter"
+  },
+  "agenda": {
+    "title": "Agenda",
+    "subtitle": "Upcoming shows, presentations and trainings",
+    "location": "Location",
+    "type": "Type",
+    "noEvents": "No events currently scheduled.",
+    "show": "Show",
+    "presentation": "Presentation",
+    "training": "Training"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch for any enquiry or booking",
+    "name": "Name",
+    "surname": "Surname",
+    "phone": "Phone",
+    "email": "Email",
+    "subject": "Subject",
+    "description": "Description",
+    "send": "Send message",
+    "whatsapp": "Contact via WhatsApp",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again.",
+    "namePlaceholder": "Your name",
+    "surnamePlaceholder": "Your surname",
+    "phonePlaceholder": "+34 600 000 000",
+    "emailPlaceholder": "your@email.com",
+    "subjectPlaceholder": "Message subject",
+    "descriptionPlaceholder": "Describe your enquiry..."
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "quickLinks": "Quick Links",
+    "followMe": "Follow me",
+    "contactInfo": "Contact info"
+  },
+  "common": {
+    "loading": "Loading...",
+    "viewMore": "View more",
+    "back": "Back"
+  }
+}
