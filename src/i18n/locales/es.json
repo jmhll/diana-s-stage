@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "actress": "Actriz",
+    "presenter": "Presentadora",
+    "services": "Servicios",
+    "gallery": "Galería",
+    "agenda": "Agenda",
+    "contact": "Contacto"
+  },
+  "home": {
+    "heroTitle": "Diana Fes",
+    "heroSubtitle": "Actriz · Presentadora · Formadora",
+    "heroDescription": "Pasión por el arte escénico, la comunicación y el desarrollo personal",
+    "heroCta": "Contáctame",
+    "aboutTitle": "Sobre mí",
+    "aboutText": "Actriz y presentadora con más de 10 años de experiencia en teatro, televisión y eventos corporativos. Apasionada por conectar con el público y transmitir emociones a través del arte.",
+    "portfolioTitle": "Descubre mi trabajo",
+    "eventsTitle": "Próximos eventos",
+    "noEvents": "No hay eventos programados por el momento."
+  },
+  "actress": {
+    "title": "Actriz",
+    "subtitle": "Trayectoria artística y trabajos escénicos",
+    "videobook": "Videobook",
+    "photos": "Fotos",
+    "shows": "Espectáculos",
+    "cv": "CV Artístico",
+    "videobookDesc": "Una selección de mis trabajos audiovisuales y escénicos",
+    "photosDesc": "Galería fotográfica profesional",
+    "showsDesc": "Espectáculos en cartera disponibles para contratar",
+    "cvDesc": "Formación y experiencia artística profesional"
+  },
+  "presenter": {
+    "title": "Presentadora",
+    "subtitle": "Eventos y galas presentadas",
+    "videosTitle": "Vídeos de eventos",
+    "featuredTitle": "Eventos destacados"
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Servicios profesionales de formación y desarrollo",
+    "psychology": "Psicología",
+    "psychologyDesc": "Sesiones individuales y grupales para el bienestar emocional",
+    "psychologyOnline": "Sesiones online",
+    "psychologyPresential": "Sesiones presenciales",
+    "career": "Orientación Laboral",
+    "careerDesc": "Asesoramiento profesional para impulsar tu carrera",
+    "careerAdvice": "Asesoramiento profesional",
+    "training": "Formación",
+    "trainingDesc": "Formación a medida para empresas y profesionales",
+    "trainingCompanies": "Formación para empresas",
+    "trainingWorkshops": "Talleres grupales",
+    "trainingDevelopment": "Desarrollo profesional",
+    "learnMore": "Más información"
+  },
+  "gallery": {
+    "title": "Galería",
+    "subtitle": "Portfolio visual de mis trabajos",
+    "all": "Todo",
+    "photos": "Fotos",
+    "videos": "Vídeos",
+    "actressCategory": "Actriz",
+    "presenterCategory": "Presentadora"
+  },
+  "agenda": {
+    "title": "Agenda",
+    "subtitle": "Próximos espectáculos, presentaciones y formaciones",
+    "location": "Ubicación",
+    "type": "Tipo",
+    "noEvents": "No hay eventos programados por el momento.",
+    "show": "Espectáculo",
+    "presentation": "Presentación",
+    "training": "Formación"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Ponte en contacto conmigo para cualquier consulta o contratación",
+    "name": "Nombre",
+    "surname": "Apellido",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "subject": "Asunto",
+    "description": "Descripción",
+    "send": "Enviar mensaje",
+    "whatsapp": "Contactar por WhatsApp",
+    "success": "¡Mensaje enviado correctamente!",
+    "error": "Error al enviar el mensaje. Inténtalo de nuevo.",
+    "namePlaceholder": "Tu nombre",
+    "surnamePlaceholder": "Tu apellido",
+    "phonePlaceholder": "+34 600 000 000",
+    "emailPlaceholder": "tu@email.com",
+    "subjectPlaceholder": "Asunto del mensaje",
+    "descriptionPlaceholder": "Describe tu consulta..."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "quickLinks": "Enlaces rápidos",
+    "followMe": "Sígueme",
+    "contactInfo": "Información de contacto"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "viewMore": "Ver más",
+    "back": "Volver"
+  }
+}

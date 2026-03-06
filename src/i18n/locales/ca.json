@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Inici",
+    "actress": "Actriu",
+    "presenter": "Presentadora",
+    "services": "Serveis",
+    "gallery": "Galeria",
+    "agenda": "Agenda",
+    "contact": "Contacte"
+  },
+  "home": {
+    "heroTitle": "Diana Fes",
+    "heroSubtitle": "Actriu · Presentadora · Formadora",
+    "heroDescription": "Passió per l'art escènic, la comunicació i el desenvolupament personal",
+    "heroCta": "Contacta'm",
+    "aboutTitle": "Sobre mi",
+    "aboutText": "Actriu i presentadora amb més de 10 anys d'experiència en teatre, televisió i esdeveniments corporatius. Apassionada per connectar amb el públic i transmetre emocions a través de l'art.",
+    "portfolioTitle": "Descobreix el meu treball",
+    "eventsTitle": "Propers esdeveniments",
+    "noEvents": "No hi ha esdeveniments programats de moment."
+  },
+  "actress": {
+    "title": "Actriu",
+    "subtitle": "Trajectòria artística i treballs escènics",
+    "videobook": "Videobook",
+    "photos": "Fotos",
+    "shows": "Espectacles",
+    "cv": "CV Artístic",
+    "videobookDesc": "Una selecció dels meus treballs audiovisuals i escènics",
+    "photosDesc": "Galeria fotogràfica professional",
+    "showsDesc": "Espectacles en cartera disponibles per contractar",
+    "cvDesc": "Formació i experiència artística professional"
+  },
+  "presenter": {
+    "title": "Presentadora",
+    "subtitle": "Esdeveniments i galas presentades",
+    "videosTitle": "Vídeos d'esdeveniments",
+    "featuredTitle": "Esdeveniments destacats"
+  },
+  "services": {
+    "title": "Serveis",
+    "subtitle": "Serveis professionals de formació i desenvolupament",
+    "psychology": "Psicologia",
+    "psychologyDesc": "Sessions individuals i grupals per al benestar emocional",
+    "psychologyOnline": "Sessions online",
+    "psychologyPresential": "Sessions presencials",
+    "career": "Orientació Laboral",
+    "careerDesc": "Assessorament professional per impulsar la teva carrera",
+    "careerAdvice": "Assessorament professional",
+    "training": "Formació",
+    "trainingDesc": "Formació a mida per a empreses i professionals",
+    "trainingCompanies": "Formació per a empreses",
+    "trainingWorkshops": "Tallers grupals",
+    "trainingDevelopment": "Desenvolupament professional",
+    "learnMore": "Més informació"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "subtitle": "Portfolio visual dels meus treballs",
+    "all": "Tot",
+    "photos": "Fotos",
+    "videos": "Vídeos",
+    "actressCategory": "Actriu",
+    "presenterCategory": "Presentadora"
+  },
+  "agenda": {
+    "title": "Agenda",
+    "subtitle": "Propers espectacles, presentacions i formacions",
+    "location": "Ubicació",
+    "type": "Tipus",
+    "noEvents": "No hi ha esdeveniments programats de moment.",
+    "show": "Espectacle",
+    "presentation": "Presentació",
+    "training": "Formació"
+  },
+  "contact": {
+    "title": "Contacte",
+    "subtitle": "Posa't en contacte amb mi per a qualsevol consulta o contractació",
+    "name": "Nom",
+    "surname": "Cognom",
+    "phone": "Telèfon",
+    "email": "Correu electrònic",
+    "subject": "Assumpte",
+    "description": "Descripció",
+    "send": "Enviar missatge",
+    "whatsapp": "Contactar per WhatsApp",
+    "success": "Missatge enviat correctament!",
+    "error": "Error en enviar el missatge. Torna-ho a provar.",
+    "namePlaceholder": "El teu nom",
+    "surnamePlaceholder": "El teu cognom",
+    "phonePlaceholder": "+34 600 000 000",
+    "emailPlaceholder": "el.teu@email.com",
+    "subjectPlaceholder": "Assumpte del missatge",
+    "descriptionPlaceholder": "Descriu la teva consulta..."
+  },
+  "footer": {
+    "rights": "Tots els drets reservats",
+    "quickLinks": "Enllaços ràpids",
+    "followMe": "Segueix-me",
+    "contactInfo": "Informació de contacte"
+  },
+  "common": {
+    "loading": "Carregant...",
+    "viewMore": "Veure més",
+    "back": "Tornar"
+  }
+}
