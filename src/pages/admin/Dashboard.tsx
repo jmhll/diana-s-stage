@@ -12,6 +12,7 @@ import {
   LayoutDashboard,
   Menu,
   X,
+  UserCircle,
 } from "lucide-react";
 import { useState } from "react";
 
