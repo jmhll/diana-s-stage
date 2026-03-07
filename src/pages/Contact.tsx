@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Send, MessageCircle, Mail, Phone, Instagram, Facebook, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useQuery } from "@tanstack/react-query";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -20,31 +22,67 @@ const Contact = () => {
     subject: "",
     description: "",
   });
+  const [sending, setSending] = useState(false);
+
+  const { data: siteSettings } = useQuery({
+    queryKey: ["site_settings"],
+    queryFn: async () => {
+      const { data } = await supabase.from("site_settings").select("*").limit(1).maybeSingle();
+      return data;
+    },
+  });
+
+  const { data: socialLinks } = useQuery({
+    queryKey: ["social_links"],
+    queryFn: async () => {
+      const { data } = await supabase.from("social_links").select("*");
+      return data ?? [];
+    },
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder — will integrate with Supabase in Phase 2
-    toast({
-      title: t("contact.success"),
+    setSending(true);
+    const { error } = await supabase.from("contact_messages").insert({
+      name: formData.name,
+      surname: formData.surname,
+      phone: formData.phone || null,
+      email: formData.email,
+      subject: formData.subject,
+      description: formData.description,
     });
-    setFormData({ name: "", surname: "", phone: "", email: "", subject: "", description: "" });
+    setSending(false);
+
+    if (error) {
+      toast({ title: t("contact.error"), variant: "destructive" });
+    } else {
+      toast({ title: t("contact.success") });
+      setFormData({ name: "", surname: "", phone: "", email: "", subject: "", description: "" });
+    }
   };
 
   const handleWhatsApp = () => {
+    const number = siteSettings?.whatsapp_number?.replace(/[^0-9]/g, "") ?? "34600000000";
     const message = encodeURIComponent(
-      `Hola Diana! Em dic ${formData.name} ${formData.surname}. ${formData.subject ? `Assumpte: ${formData.subject}` : ""}`
+      `Hola! Em dic ${formData.name} ${formData.surname}. ${formData.subject ? `Assumpte: ${formData.subject}` : ""}`
     );
-    window.open(`https://wa.me/34600000000?text=${message}`, "_blank");
+    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
   };
 
-  const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  const getSocialUrl = (platform: string) =>
+    socialLinks?.find((s) => s.platform === platform)?.url ?? "#";
+
+  const corporateEmail = siteSettings?.corporate_email ?? "info@dianafes.com";
+  const whatsappDisplay = siteSettings?.whatsapp_number ?? "+34 600 000 000";
+
+  const socialIcons = [
+    { icon: Instagram, platform: "instagram", label: "Instagram" },
+    { icon: Facebook, platform: "facebook", label: "Facebook" },
+    { icon: Linkedin, platform: "linkedin", label: "LinkedIn" },
   ];
 
   return (
@@ -64,7 +102,6 @@ const Contact = () => {
 
       <section className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {/* Form */}
           <div className="lg:col-span-2">
             <ScrollReveal>
               <Card className="border-0 shadow-lg">
@@ -73,36 +110,36 @@ const Contact = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">{t("contact.name")} *</Label>
-                        <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder={t("contact.namePlaceholder")} required />
+                        <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder={t("contact.namePlaceholder")} required maxLength={100} />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="surname">{t("contact.surname")} *</Label>
-                        <Input id="surname" name="surname" value={formData.surname} onChange={handleChange} placeholder={t("contact.surnamePlaceholder")} required />
+                        <Input id="surname" name="surname" value={formData.surname} onChange={handleChange} placeholder={t("contact.surnamePlaceholder")} required maxLength={100} />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="phone">{t("contact.phone")}</Label>
-                        <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder={t("contact.phonePlaceholder")} />
+                        <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder={t("contact.phonePlaceholder")} maxLength={20} />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">{t("contact.email")} *</Label>
-                        <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder={t("contact.emailPlaceholder")} required />
+                        <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder={t("contact.emailPlaceholder")} required maxLength={255} />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="subject">{t("contact.subject")} *</Label>
-                      <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder={t("contact.subjectPlaceholder")} required />
+                      <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder={t("contact.subjectPlaceholder")} required maxLength={200} />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="description">{t("contact.description")} *</Label>
-                      <Textarea id="description" name="description" value={formData.description} onChange={handleChange} placeholder={t("contact.descriptionPlaceholder")} rows={5} required />
+                      <Textarea id="description" name="description" value={formData.description} onChange={handleChange} placeholder={t("contact.descriptionPlaceholder")} rows={5} required maxLength={2000} />
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                      <Button type="submit" className="flex-1">
+                      <Button type="submit" className="flex-1" disabled={sending}>
                         <Send className="mr-2 h-4 w-4" />
-                        {t("contact.send")}
+                        {sending ? t("common.loading") : t("contact.send")}
                       </Button>
                       <Button type="button" variant="outline" onClick={handleWhatsApp} className="flex-1 border-green-500 text-green-600 hover:bg-green-50 hover:text-green-700">
                         <MessageCircle className="mr-2 h-4 w-4" />
@@ -115,7 +152,6 @@ const Contact = () => {
             </ScrollReveal>
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-6">
             <ScrollReveal delay={0.2}>
               <Card className="border-0 shadow-lg">
@@ -124,13 +160,13 @@ const Contact = () => {
                     {t("footer.contactInfo")}
                   </h3>
                   <div className="space-y-3 text-sm">
-                    <a href="mailto:info@dianafes.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                    <a href={`mailto:${corporateEmail}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                       <Mail className="h-4 w-4" />
-                      info@dianafes.com
+                      {corporateEmail}
                     </a>
-                    <a href="tel:+34600000000" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                    <a href={`tel:${whatsappDisplay}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                       <Phone className="h-4 w-4" />
-                      +34 600 000 000
+                      {whatsappDisplay}
                     </a>
                   </div>
                 </CardContent>
@@ -144,10 +180,10 @@ const Contact = () => {
                     {t("footer.followMe")}
                   </h3>
                   <div className="flex gap-3">
-                    {socialLinks.map((social) => (
+                    {socialIcons.map((social) => (
                       <a
                         key={social.label}
-                        href={social.href}
+                        href={getSocialUrl(social.platform)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -157,7 +193,7 @@ const Contact = () => {
                       </a>
                     ))}
                     <a
-                      href="https://tiktok.com"
+                      href={getSocialUrl("tiktok")}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"

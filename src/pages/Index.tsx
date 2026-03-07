@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Camera, Mic, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +10,27 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 const Index = () => {
   const { t } = useTranslation();
+
+  const { data: events = [] } = useQuery({
+    queryKey: ["events_home"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("events")
+        .select("*")
+        .eq("is_published", true)
+        .gte("date", new Date().toISOString())
+        .order("date", { ascending: true })
+        .limit(3);
+      return data ?? [];
+    },
+  });
+
+  const typeLabels: Record<string, string> = {
+    espectacle: t("agenda.show"),
+    presentacio: t("agenda.presentation"),
+    formacio: t("agenda.training"),
+    altre: "Altre",
+  };
 
   const portfolioCards = [
     {
@@ -30,21 +53,6 @@ const Index = () => {
       description: t("services.subtitle"),
       to: "/serveis",
       image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop",
-    },
-  ];
-
-  const placeholderEvents = [
-    {
-      title: "Monòleg 'Llum i Ombra'",
-      date: "2026-04-15",
-      location: "Teatre Lliure, Barcelona",
-      type: t("agenda.show"),
-    },
-    {
-      title: "Gala Premis Arts Escèniques",
-      date: "2026-05-02",
-      location: "Palau de la Música, Barcelona",
-      type: t("agenda.presentation"),
     },
   ];
 
@@ -172,28 +180,32 @@ const Index = () => {
           </ScrollReveal>
 
           <div className="max-w-2xl mx-auto space-y-4">
-            {placeholderEvents.map((event, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <Card className="border border-border hover:border-primary/30 transition-colors">
-                  <CardContent className="p-6 flex items-center gap-4">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Calendar className="h-6 w-6 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-xl font-semibold text-foreground">
-                        {event.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {new Date(event.date).toLocaleDateString()} · {event.location}
-                      </p>
-                    </div>
-                    <span className="text-xs font-medium px-3 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
-                      {event.type}
-                    </span>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-            ))}
+            {events.length === 0 ? (
+              <p className="text-center text-muted-foreground">{t("home.noEvents")}</p>
+            ) : (
+              events.map((event, index) => (
+                <ScrollReveal key={event.id} delay={index * 0.1}>
+                  <Card className="border border-border hover:border-primary/30 transition-colors">
+                    <CardContent className="p-6 flex items-center gap-4">
+                      <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Calendar className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-display text-xl font-semibold text-foreground">
+                          {event.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {new Date(event.date).toLocaleDateString()} · {event.location}
+                        </p>
+                      </div>
+                      <span className="text-xs font-medium px-3 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
+                        {typeLabels[event.event_type] ?? event.event_type}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              ))
+            )}
           </div>
 
           <div className="text-center mt-8">
