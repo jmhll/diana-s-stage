@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/contexts/AuthContext";
@@ -11,28 +11,34 @@ import { Lock } from "lucide-react";
 
 const Login = () => {
   const { t } = useTranslation();
-  const { signIn } = useAuth();
+  const { signIn, user, role, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  // Redirect when user is authenticated and has a role
+  useEffect(() => {
+    if (!authLoading && user && role) {
+      navigate("/admin", { replace: true });
+    }
+  }, [authLoading, user, role, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
     const { error } = await signIn(email, password);
-    setLoading(false);
 
     if (error) {
+      setSubmitting(false);
       toast({
         title: t("admin.loginError"),
         description: error.message,
         variant: "destructive",
       });
-    } else {
-      navigate("/admin");
     }
+    // Don't setSubmitting(false) on success — the useEffect will navigate
   };
 
   return (
@@ -68,8 +74,8 @@ const Login = () => {
                 autoComplete="current-password"
               />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? t("common.loading") : t("admin.loginButton")}
+            <Button type="submit" className="w-full" disabled={submitting}>
+              {submitting ? t("common.loading") : t("admin.loginButton")}
             </Button>
           </form>
         </CardContent>
