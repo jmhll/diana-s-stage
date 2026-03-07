@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -95,11 +95,22 @@ const Navbar = () => {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+
+          {/* Admin link */}
+          <Link to="/admin/login" aria-label="Admin">
+            <Button variant="ghost" size="icon" className="ml-1 h-9 w-9">
+              <UserCircle className="h-5 w-5" />
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex lg:hidden items-center gap-2">
-          <DropdownMenu>
+        <div className="flex lg:hidden items-center gap-1">
+          <Link to="/admin/login" aria-label="Admin">
+            <Button variant="ghost" size="icon" className="h-9 w-9">
+              <UserCircle className="h-4 w-4" />
+            </Button>
+          </Link>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="h-9 w-9">
                 <Globe className="h-4 w-4" />
