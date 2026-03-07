@@ -1,9 +1,27 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { Instagram, Facebook, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const { t } = useTranslation();
+
+  const { data: socialLinks = [] } = useQuery({
+    queryKey: ["social_links_footer"],
+    queryFn: async () => {
+      const { data } = await supabase.from("social_links").select("*");
+      return data ?? [];
+    },
+  });
+
+  const { data: siteSettings } = useQuery({
+    queryKey: ["site_settings_footer"],
+    queryFn: async () => {
+      const { data } = await supabase.from("site_settings").select("*").limit(1).maybeSingle();
+      return data;
+    },
+  });
 
   const navLinks = [
     { to: "/", label: t("nav.home") },
@@ -15,17 +33,19 @@ const Footer = () => {
     { to: "/contacte", label: t("nav.contact") },
   ];
 
-  const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  const getSocialUrl = (platform: string) =>
+    socialLinks.find((s) => s.platform === platform)?.url ?? "#";
+
+  const socialIcons = [
+    { icon: Instagram, platform: "instagram", label: "Instagram" },
+    { icon: Facebook, platform: "facebook", label: "Facebook" },
+    { icon: Linkedin, platform: "linkedin", label: "LinkedIn" },
   ];
 
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
           <div>
             <h3 className="font-display text-2xl font-bold mb-3">Diana Fes</h3>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
@@ -33,11 +53,8 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick links */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-3">
-              {t("footer.quickLinks")}
-            </h4>
+            <h4 className="font-display text-lg font-semibold mb-3">{t("footer.quickLinks")}</h4>
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
@@ -51,16 +68,13 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Social & Contact */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-3">
-              {t("footer.followMe")}
-            </h4>
+            <h4 className="font-display text-lg font-semibold mb-3">{t("footer.followMe")}</h4>
             <div className="flex gap-3 mb-4">
-              {socialLinks.map((social) => (
+              {socialIcons.map((social) => (
                 <a
                   key={social.label}
-                  href={social.href}
+                  href={getSocialUrl(social.platform)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-full bg-primary-foreground/10 hover:bg-secondary hover:text-secondary-foreground transition-colors"
@@ -69,9 +83,8 @@ const Footer = () => {
                   <social.icon className="h-5 w-5" />
                 </a>
               ))}
-              {/* TikTok custom icon */}
               <a
-                href="https://tiktok.com"
+                href={getSocialUrl("tiktok")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-primary-foreground/10 hover:bg-secondary hover:text-secondary-foreground transition-colors"
@@ -83,8 +96,8 @@ const Footer = () => {
               </a>
             </div>
             <div className="text-sm text-primary-foreground/70">
-              <p>info@dianafes.com</p>
-              <p>+34 600 000 000</p>
+              <p>{siteSettings?.corporate_email ?? "info@dianafes.com"}</p>
+              <p>{siteSettings?.whatsapp_number ?? "+34 600 000 000"}</p>
             </div>
           </div>
         </div>
