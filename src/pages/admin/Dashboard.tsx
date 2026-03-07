@@ -97,7 +97,9 @@ const Dashboard = () => {
         <div className="p-3 border-t border-border">
           <div className="px-3 py-2 text-xs text-muted-foreground mb-2 truncate">
             {user?.email}
-            <span className="ml-1 px-1.5 py-0.5 rounded bg-primary/10 text-primary text-[10px] uppercase font-semibold">
+            <span className={`ml-1 px-1.5 py-0.5 rounded text-[10px] uppercase font-semibold ${
+              role === "admin" ? "bg-primary/10 text-primary" : "bg-secondary/20 text-secondary"
+            }`}>
               {role}
             </span>
           </div>
