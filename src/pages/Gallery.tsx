@@ -32,6 +32,8 @@ const Gallery = () => {
     { key: "video", label: t("gallery.videos") },
     { key: "actriu", label: t("gallery.actressCategory") },
     { key: "presentadora", label: t("gallery.presenterCategory") },
+    { key: "serveis", label: t("nav.services") },
+    { key: "general", label: "General" },
   ];
 
   const filtered = items.filter((item) => {
