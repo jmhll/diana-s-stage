@@ -55,14 +55,33 @@ const Contact = () => {
       subject: formData.subject,
       description: formData.description,
     });
-    setSending(false);
 
     if (error) {
+      setSending(false);
       toast({ title: t("contact.error"), variant: "destructive" });
-    } else {
-      toast({ title: t("contact.success") });
-      setFormData({ name: "", surname: "", phone: "", email: "", subject: "", description: "" });
+      return;
     }
+
+    // Send email notification to corporate email
+    try {
+      await supabase.functions.invoke("send-contact-notification", {
+        body: {
+          name: formData.name,
+          surname: formData.surname,
+          phone: formData.phone,
+          email: formData.email,
+          subject: formData.subject,
+          description: formData.description,
+          corporateEmail: siteSettings?.corporate_email ?? "info@dianafes.com",
+        },
+      });
+    } catch (emailErr) {
+      console.error("Email notification failed:", emailErr);
+    }
+
+    setSending(false);
+    toast({ title: t("contact.success") });
+    setFormData({ name: "", surname: "", phone: "", email: "", subject: "", description: "" });
   };
 
   const handleWhatsApp = () => {
