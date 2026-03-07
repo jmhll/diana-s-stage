@@ -71,7 +71,8 @@
     "noEvents": "No hi ha esdeveniments programats de moment.",
     "show": "Espectacle",
     "presentation": "Presentació",
-    "training": "Formació"
+    "training": "Formació",
+    "published": "Publicat"
   },
   "contact": {
     "title": "Contacte",
@@ -139,6 +140,22 @@
     "contactSettings": "Dades de contacte",
     "corporateEmail": "Email corporatiu",
     "whatsappNumber": "Número de WhatsApp",
-    "socialLinks": "Xarxes socials"
+    "socialLinks": "Xarxes socials",
+    "services": "Serveis",
+    "addService": "Afegir servei",
+    "editService": "Editar servei",
+    "addUser": "Afegir usuari",
+    "displayName": "Nom visible",
+    "role": "Rol",
+    "userCreated": "Usuari creat correctament",
+    "userDeleted": "Usuari eliminat",
+    "roleUpdated": "Rol actualitzat",
+    "confirmDelete": "Estàs segur?",
+    "confirmDeleteUser": "Aquesta acció eliminarà l'usuari permanentment.",
+    "confirmDeleteService": "Aquesta acció eliminarà el servei permanentment.",
+    "description": "Descripció",
+    "icon": "Icona",
+    "sortOrder": "Ordre",
+    "itemSaved": "Element guardat"
   }
 }

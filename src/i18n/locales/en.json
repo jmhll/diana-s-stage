@@ -71,7 +71,8 @@
     "noEvents": "No events currently scheduled.",
     "show": "Show",
     "presentation": "Presentation",
-    "training": "Training"
+    "training": "Training",
+    "published": "Published"
   },
   "contact": {
     "title": "Contact",
@@ -139,6 +140,22 @@
     "contactSettings": "Contact details",
     "corporateEmail": "Corporate email",
     "whatsappNumber": "WhatsApp number",
-    "socialLinks": "Social networks"
+    "socialLinks": "Social networks",
+    "services": "Services",
+    "addService": "Add service",
+    "editService": "Edit service",
+    "addUser": "Add user",
+    "displayName": "Display name",
+    "role": "Role",
+    "userCreated": "User created successfully",
+    "userDeleted": "User deleted",
+    "roleUpdated": "Role updated",
+    "confirmDelete": "Are you sure?",
+    "confirmDeleteUser": "This will permanently delete the user.",
+    "confirmDeleteService": "This will permanently delete the service.",
+    "description": "Description",
+    "icon": "Icon",
+    "sortOrder": "Sort order",
+    "itemSaved": "Item saved"
   }
 }

@@ -71,7 +71,8 @@
     "noEvents": "No hay eventos programados por el momento.",
     "show": "Espectáculo",
     "presentation": "Presentación",
-    "training": "Formación"
+    "training": "Formación",
+    "published": "Publicado"
   },
   "contact": {
     "title": "Contacto",
@@ -139,6 +140,22 @@
     "contactSettings": "Datos de contacto",
     "corporateEmail": "Email corporativo",
     "whatsappNumber": "Número de WhatsApp",
-    "socialLinks": "Redes sociales"
+    "socialLinks": "Redes sociales",
+    "services": "Servicios",
+    "addService": "Añadir servicio",
+    "editService": "Editar servicio",
+    "addUser": "Añadir usuario",
+    "displayName": "Nombre visible",
+    "role": "Rol",
+    "userCreated": "Usuario creado correctamente",
+    "userDeleted": "Usuario eliminado",
+    "roleUpdated": "Rol actualizado",
+    "confirmDelete": "¿Estás seguro?",
+    "confirmDeleteUser": "Esta acción eliminará el usuario permanentemente.",
+    "confirmDeleteService": "Esta acción eliminará el servicio permanentemente.",
+    "description": "Descripción",
+    "icon": "Icono",
+    "sortOrder": "Orden",
+    "itemSaved": "Elemento guardado"
   }
 }

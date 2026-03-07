@@ -22,6 +22,7 @@ import AdminEvents from "./pages/admin/AdminEvents";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminUsers from "./pages/admin/AdminUsers";
+import AdminServices from "./pages/admin/AdminServices";
 import "./i18n";
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ const App = () => (
                 }
               />
               <Route path="settings" element={<AdminSettings />} />
+              <Route path="services" element={<AdminServices />} />
               <Route
                 path="users"
                 element={

@@ -9,7 +9,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, Calendar } from "lucide-react";
+import { Plus, Trash2, Calendar, Eye, EyeOff } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Event = Tables<"events">;
@@ -26,6 +27,7 @@ const AdminEvents = () => {
     date: "",
     location: "",
     event_type: "espectacle" as string,
+    is_published: true,
   });
 
   const fetchEvents = async () => {
@@ -44,13 +46,14 @@ const AdminEvents = () => {
       date: form.date,
       location: form.location || null,
       event_type: form.event_type,
+      is_published: form.is_published,
     });
     setLoading(false);
     if (error) {
       toast({ title: t("common.error"), description: error.message, variant: "destructive" });
     } else {
       toast({ title: t("admin.itemAdded") });
-      setForm({ title: "", description: "", date: "", location: "", event_type: "espectacle" });
+      setForm({ title: "", description: "", date: "", location: "", event_type: "espectacle", is_published: true });
       setOpen(false);
       fetchEvents();
     }
@@ -114,6 +117,10 @@ const AdminEvents = () => {
                   </SelectContent>
                 </Select>
               </div>
+              <div className="flex items-center justify-between">
+                <Label>{t("agenda.published")}</Label>
+                <Switch checked={form.is_published} onCheckedChange={(v) => setForm((p) => ({ ...p, is_published: v }))} />
+              </div>
               <Button onClick={handleAdd} disabled={loading} className="w-full">
                 {loading ? t("common.loading") : t("admin.add")}
               </Button>
@@ -141,6 +148,11 @@ const AdminEvents = () => {
                       {event.location} · {eventTypeLabels[event.event_type] ?? event.event_type}
                     </p>
                   </div>
+                  {event.is_published ? (
+                    <Eye className="h-4 w-4 text-primary flex-shrink-0" />
+                  ) : (
+                    <EyeOff className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  )}
                   <Button
                     variant="ghost"
                     size="icon"
