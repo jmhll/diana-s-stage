@@ -110,7 +110,7 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" className="h-9 w-9">
               <UserCircle className="h-4 w-4" />
             </Button>
-          </Link>
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="h-9 w-9">
                 <Globe className="h-4 w-4" />
