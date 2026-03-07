@@ -20,7 +20,7 @@ const Login = () => {
 
   // Redirect when user is authenticated and has a role
   useEffect(() => {
-    if (!authLoading && user && role) {
+    if (user && role) {
       navigate("/admin", { replace: true });
     }
   }, [authLoading, user, role, navigate]);
