@@ -100,6 +100,7 @@ const Contact = () => {
 
   const socialIcons = [
     { icon: Instagram, platform: "instagram", label: "Instagram" },
+    { icon: null, platform: "youtube", label: "YouTube" },
     { icon: Facebook, platform: "facebook", label: "Facebook" },
     { icon: Linkedin, platform: "linkedin", label: "LinkedIn" },
   ];
