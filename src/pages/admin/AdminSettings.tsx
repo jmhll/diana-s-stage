@@ -15,8 +15,8 @@ const AdminSettings = () => {
   const [settings, setSettings] = useState({ corporate_email: "", whatsapp_number: "" });
   const [socials, setSocials] = useState<Record<string, string>>({
     instagram: "",
+    youtube: "",
     facebook: "",
-    tiktok: "",
     linkedin: "",
   });
 
