@@ -117,19 +117,19 @@ const Actress = () => {
               <Card className="border border-border">
                 <CardContent className="p-8 space-y-6">
                   <div>
-                    <h3 className="font-display text-2xl font-bold text-foreground mb-3">Formació</h3>
+                    <h3 className="font-display text-2xl font-bold text-foreground mb-3">{t("actress.cvTraining")}</h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li>• Grau en Art Dramàtic – Institut del Teatre (2012-2016)</li>
-                      <li>• Tècnica Meisner – Barcelona (2017)</li>
-                      <li>• Curs de Veu i Dicció – RESAD Madrid (2018)</li>
+                      <li>• {t("actress.cvTraining1")}</li>
+                      <li>• {t("actress.cvTraining2")}</li>
+                      <li>• {t("actress.cvTraining3")}</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl font-bold text-foreground mb-3">Experiència</h3>
+                    <h3 className="font-display text-2xl font-bold text-foreground mb-3">{t("actress.cvExperience")}</h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li>• +15 produccions teatrals professionals</li>
-                      <li>• Participació en sèries de televisió</li>
-                      <li>• Curtmetratges premiats en festivals</li>
+                      <li>• {t("actress.cvExperience1")}</li>
+                      <li>• {t("actress.cvExperience2")}</li>
+                      <li>• {t("actress.cvExperience3")}</li>
                     </ul>
                   </div>
                 </CardContent>

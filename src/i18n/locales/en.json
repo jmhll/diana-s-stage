@@ -29,7 +29,15 @@
     "videobookDesc": "A selection of my audiovisual and stage works",
     "photosDesc": "Professional photo gallery",
     "showsDesc": "Available shows for booking",
-    "cvDesc": "Professional artistic training and experience"
+    "cvDesc": "Professional artistic training and experience",
+    "cvTraining": "Training",
+    "cvTraining1": "Degree in Dramatic Arts – Institut del Teatre (2012-2016)",
+    "cvTraining2": "Meisner Technique – Barcelona (2017)",
+    "cvTraining3": "Voice and Diction Course – RESAD Madrid (2018)",
+    "cvExperience": "Experience",
+    "cvExperience1": "+15 professional theatre productions",
+    "cvExperience2": "Participation in TV series",
+    "cvExperience3": "Award-winning short films at festivals"
   },
   "presenter": {
     "title": "Presenter",
