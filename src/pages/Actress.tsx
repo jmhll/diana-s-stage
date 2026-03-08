@@ -3,20 +3,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
 
-const placeholderPhotos = Array.from({ length: 6 }, (_, i) => ({
-  id: i + 1,
-  url: `https://images.unsplash.com/photo-${
-    [
-      "1494790108377-be9c29b29330",
-      "1534528741775-53994a69daeb",
-      "1517841905240-472988babdf9",
-      "1488426862026-3ee34a7d66df",
-      "1524504388940-b1c1722653e1",
-      "1502823403499-6ccfcf4fb453",
-    ][i]
-  }?w=400&h=500&fit=crop`,
-  alt: `Photo ${i + 1}`,
-}));
+const placeholderPhotos = [
+  { id: 1, url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop", alt: "Photo 1" },
+  { id: 2, url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop", alt: "Photo 2" },
+  { id: 3, url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop", alt: "Photo 3" },
+  { id: 4, url: "/images/actress-photo-4.jpeg", alt: "Escena teatral" },
+  { id: 5, url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop", alt: "Photo 5" },
+  { id: 6, url: "/images/actress-photo-6.jpeg", alt: "Actuació teatral" },
+];
 
 const placeholderShows = [
   { title: "Monòleg 'Llum i Ombra'", year: "2025", venue: "Teatre Lliure" },
