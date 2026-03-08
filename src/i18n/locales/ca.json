@@ -29,7 +29,15 @@
     "videobookDesc": "Una selecció dels meus treballs audiovisuals i escènics",
     "photosDesc": "Galeria fotogràfica professional",
     "showsDesc": "Espectacles en cartera disponibles per contractar",
-    "cvDesc": "Formació i experiència artística professional"
+    "cvDesc": "Formació i experiència artística professional",
+    "cvTraining": "Formació",
+    "cvTraining1": "Grau en Art Dramàtic – Institut del Teatre (2012-2016)",
+    "cvTraining2": "Tècnica Meisner – Barcelona (2017)",
+    "cvTraining3": "Curs de Veu i Dicció – RESAD Madrid (2018)",
+    "cvExperience": "Experiència",
+    "cvExperience1": "+15 produccions teatrals professionals",
+    "cvExperience2": "Participació en sèries de televisió",
+    "cvExperience3": "Curtmetratges premiats en festivals"
   },
   "presenter": {
     "title": "Presentadora",
