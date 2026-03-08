@@ -86,10 +86,15 @@ const Contact = () => {
 
   const handleWhatsApp = () => {
     const number = siteSettings?.whatsapp_number?.replace(/[^0-9]/g, "") ?? "34600000000";
-    const message = encodeURIComponent(
-      `Hola! Em dic ${formData.name} ${formData.surname}. ${formData.subject ? `Assumpte: ${formData.subject}` : ""}`
-    );
-    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
+    const parts = [];
+    if (formData.name || formData.surname) {
+      parts.push(`Hola! Em dic ${formData.name} ${formData.surname}.`);
+    }
+    if (formData.subject) {
+      parts.push(`Assumpte: ${formData.subject}`);
+    }
+    const message = parts.length > 0 ? `?text=${encodeURIComponent(parts.join(" "))}` : "";
+    window.location.href = `https://wa.me/${number}${message}`;
   };
 
   const getSocialUrl = (platform: string) =>
