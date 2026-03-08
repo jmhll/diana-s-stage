@@ -15,8 +15,8 @@ const AdminSettings = () => {
   const [settings, setSettings] = useState({ corporate_email: "", whatsapp_number: "" });
   const [socials, setSocials] = useState<Record<string, string>>({
     instagram: "",
+    youtube: "",
     facebook: "",
-    tiktok: "",
     linkedin: "",
   });
 
@@ -100,7 +100,7 @@ const AdminSettings = () => {
             <CardTitle className="text-lg">{t("admin.socialLinks")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {["instagram", "facebook", "tiktok", "linkedin"].map((platform) => (
+            {["instagram", "youtube", "facebook", "linkedin"].map((platform) => (
               <div key={platform} className="space-y-2">
                 <Label className="capitalize">{platform}</Label>
                 <Input
