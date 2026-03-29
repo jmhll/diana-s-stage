@@ -1,13 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
-import { Play } from "lucide-react";
+import imgPremis from "@/assets/presentadora_premis.jpeg";
+import imgEndofest from "@/assets/presentadora_endofest.jpg";
+import imgForum from "@/assets/presentadora_forum.jpg";
 
-const placeholderVideos = [
-  { title: "Gala Premis Cultura 2025", thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=340&fit=crop" },
-  { title: "Nit de la Ciència 2024", thumbnail: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=340&fit=crop" },
-  { title: "Festival Arts Barcelona", thumbnail: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&h=340&fit=crop" },
-];
+const photoKeys = ["premis", "endofest", "forum"] as const;
+const photoImages = [imgPremis, imgEndofest, imgForum];
 
 const featuredEvents = [
   { title: "Gala Premis Cultura", year: "2025", description: "Presentació de la gala anual dels premis de cultura de Catalunya." },
@@ -33,26 +32,21 @@ const Presenter = () => {
         </div>
       </section>
 
-      {/* Videos */}
+      {/* Photos */}
       <section className="container mx-auto px-4 py-16">
         <ScrollReveal>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-8">
-            {t("presenter.videosTitle")}
+            {t("presenter.photosTitle")}
           </h2>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {placeholderVideos.map((video, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <div className="group cursor-pointer">
-                <div className="relative aspect-video rounded-lg overflow-hidden mb-3">
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  <div className="absolute inset-0 bg-primary/30 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center shadow-lg">
-                      <Play className="h-6 w-6 text-secondary-foreground ml-0.5" />
-                    </div>
-                  </div>
+          {photoKeys.map((key, i) => (
+            <ScrollReveal key={key} delay={i * 0.1}>
+              <div className="group">
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-3">
+                  <img src={photoImages[i]} alt={t(`presenter.photo_${key}`)} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground">{video.title}</h3>
+                <h3 className="font-display text-lg font-semibold text-foreground">{t(`presenter.photo_${key}`)}</h3>
               </div>
             </ScrollReveal>
           ))}
