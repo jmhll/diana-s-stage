@@ -14,11 +14,7 @@ const placeholderPhotos = [
   { id: 6, url: "/images/actress-photo-6.jpeg", alt: "Actuació teatral" },
 ];
 
-const placeholderShows = [
-  { title: "Monòleg 'Llum i Ombra'", year: "2025", venue: "Teatre Lliure" },
-  { title: "L'última carta", year: "2024", venue: "Teatre Nacional" },
-  { title: "Somnis d'hivern", year: "2023", venue: "Sala Beckett" },
-];
+const showKeys = ["voces", "tesoro", "escenas"] as const;
 
 const theatreWorks = [
   { year: "2025", title: "Elefant a la sala", role: "Coral" },
@@ -173,14 +169,11 @@ const Actress = () => {
                 </video>
               </div>
               <div className="space-y-4">
-                {placeholderShows.map((show, i) => (
-                  <Card key={i} className="border border-border hover:border-primary/30 transition-colors">
-                    <CardContent className="p-6 flex items-center justify-between">
-                      <div>
-                        <h3 className="font-display text-xl font-semibold text-foreground">{show.title}</h3>
-                        <p className="text-sm text-muted-foreground">{show.venue}</p>
-                      </div>
-                      <span className="text-sm font-medium text-primary">{show.year}</span>
+                {showKeys.map((key) => (
+                  <Card key={key} className="border border-border hover:border-primary/30 transition-colors">
+                    <CardContent className="p-6">
+                      <h3 className="font-display text-xl font-semibold text-foreground mb-2">{t(`actress.show_${key}_title`)}</h3>
+                      <p className="text-sm text-muted-foreground">{t(`actress.show_${key}_desc`)}</p>
                     </CardContent>
                   </Card>
                 ))}
