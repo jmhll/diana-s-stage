@@ -57,14 +57,7 @@ const Actress = () => {
           <TabsContent value="videobook">
             <ScrollReveal>
               <p className="text-muted-foreground mb-6">{t("actress.videobookDesc")}</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="aspect-video rounded-lg overflow-hidden border border-border">
-                  <video src="/videos/IMG_5121.MOV" controls className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-video rounded-lg overflow-hidden border border-border">
-                  <video src="/videos/IMG_7437.MOV" controls className="w-full h-full object-cover" />
-                </div>
-              </div>
+              <p className="text-center text-muted-foreground py-12">{t("actress.noVideos", "No hi ha vídeos disponibles de moment.")}</p>
             </ScrollReveal>
           </TabsContent>
 
