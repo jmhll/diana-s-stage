@@ -4,8 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const placeholderPhotos = [
-  { id: 1, url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop", alt: "Photo 1" },
-  { id: 2, url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop", alt: "Photo 2" },
+  { id: 1, url: "/images/actress-photo-1.jpeg", alt: "Diana perfil" },
+  { id: 2, url: "/images/actress-photo-2.jpeg", alt: "Diana vertical negre" },
   { id: 3, url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop", alt: "Photo 3" },
   { id: 4, url: "/images/actress-photo-4.jpeg", alt: "Escena teatral" },
   { id: 5, url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop", alt: "Photo 5" },
