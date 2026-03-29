@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
 import imgPremis from "@/assets/presentadora_premis.jpeg";
 import imgEndofest from "@/assets/presentadora_endofest.jpg";
@@ -47,6 +48,27 @@ const Presenter = () => {
         </div>
       </section>
 
+      {/* Featured Events */}
+      <section className="container mx-auto px-4 py-16">
+        <ScrollReveal>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-8">
+            {t("presenter.featuredTitle")}
+          </h2>
+        </ScrollReveal>
+        <div className="space-y-4">
+          {(["endofest", "forum", "migrant", "somriures", "concurs"] as const).map((key, i) => (
+            <ScrollReveal key={key} delay={i * 0.1}>
+              <Card className="border border-border hover:border-primary/30 transition-colors">
+                <CardContent className="p-6">
+                  <h3 className="font-display text-lg font-semibold text-foreground">
+                    {t(`presenter.featured_${key}`)}
+                  </h3>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
