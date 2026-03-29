@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const placeholderPhotos = [
@@ -18,8 +20,87 @@ const placeholderShows = [
   { title: "Somnis d'hivern", year: "2023", venue: "Sala Beckett" },
 ];
 
+const theatreWorks = [
+  { year: "2025", title: "Elefant a la sala", role: "Coral" },
+  { year: "2024", title: "Ecopia", role: "Coral" },
+  { year: "2023", title: "Impro feminista / Improsolidaria", role: "Coprotagonista" },
+  { year: "2023", title: "Mensual", role: "Presentadora" },
+  { year: "2023", title: "SpeakCorner. Monòlegs", role: "Unipersonal" },
+  { year: "2022", title: "El meu amic extraterrestre", role: "Protagonista" },
+  { year: "2022", title: "Aventura en Estel", role: "Unipersonal" },
+  { year: "2022", title: "Puertas Abiertas", role: "Coral" },
+  { year: "2022", title: "Spinoff", role: "Coral" },
+  { year: "2022", title: "Super Jam", role: "Protagonista" },
+  { year: "2022", title: "Llibreta blava", role: "" },
+  { year: "2021", title: "Paradís del Relat", role: "Coral" },
+  { year: "2020", title: "Historias", role: "Coral" },
+  { year: "2020", title: "Better late que nunca", role: "Coral" },
+  { year: "2019", title: "L'amansipament de les fúries", role: "Figuració" },
+  { year: "2019", title: "S'ha acabat el bròquil", role: "Coprotagonista" },
+  { year: "2019", title: "Break it / Match", role: "Coral" },
+  { year: "2019", title: "Mejor bien acompañado / Conmigo", role: "Coral" },
+  { year: "2019", title: "The Big Brain", role: "Protagonista" },
+  { year: "2018", title: "Massager / The tiny glass person", role: "Coral" },
+  { year: "2016", title: "3-D Dones", role: "Coprotagonista" },
+  { year: "2016", title: "Tres germanes, Tchekhov", role: "Coprotagonista" },
+  { year: "2010", title: "Torna-la a tocar Sam", role: "Coprotagonista" },
+  { year: "2009", title: "Moliere's 14,21", role: "Coprotagonista" },
+  { year: "2008", title: "Kaos", role: "Coprotagonista" },
+  { year: "2007", title: "La Passió", role: "Secundària" },
+  { year: "2002", title: "Monólogo: Los estudiantes de Andreu Buenafuente", role: "Protagonista" },
+];
+
+const featureFilms = [
+  { year: "2019", title: "Antonio", role: "Secundària" },
+  { year: "2011", title: "Regression", role: "Secundària" },
+  { year: "2010", title: "Ushima Next", role: "Secundària" },
+];
+
+const shortFilms = [
+  { year: "2010", title: "Los Dooh Nibors", role: "Coprotagonista" },
+  { year: "2010", title: "Les emocions", role: "Protagonista" },
+  { year: "2008", title: "Charly", role: "Secundària" },
+];
+
+const companies = [
+  "El Ensamble - Teatre Playback",
+  "INCA teatre - immersiu/sensorial",
+  "Better Late que Nunca - Improvisació en anglès",
+  "Spinoff",
+  "Maravilla Theater - Teatre físic performàtic",
+];
+
+const socialTheatreProjects = [
+  "\"Espai Dona\" Dones Immigrants. Ajuntament de Sabadell",
+  "\"Curriculum ocult. Orienta\" Persones Desocupades. Ajuntament de Molins de Rei",
+  "\"Imagina\" Persones amb trastorns mentals. Hospital Benito Menni",
+];
+
 const Actress = () => {
   const { t } = useTranslation();
+
+  const CvSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
+    <div className="mb-6">
+      <h3 className="font-display text-xl font-bold text-foreground mb-3 border-b border-primary/20 pb-1">{title}</h3>
+      {children}
+    </div>
+  );
+
+  const WorkTable = ({ items }: { items: { year: string; title: string; role: string }[] }) => (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <tbody>
+          {items.map((item, i) => (
+            <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+              <td className="py-1.5 pr-3 text-primary font-medium w-16">{item.year}</td>
+              <td className="py-1.5 pr-3 text-foreground">{item.title}</td>
+              <td className="py-1.5 text-muted-foreground italic">{item.role}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 
   return (
     <div className="py-12">
@@ -109,25 +190,133 @@ const Actress = () => {
 
           <TabsContent value="cv">
             <ScrollReveal>
-              <p className="text-muted-foreground mb-6">{t("actress.cvDesc")}</p>
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-muted-foreground">{t("actress.cvDesc")}</p>
+                <a href="/documents/CV_Diana_Hermoso.pdf" download>
+                  <Button variant="outline" className="gap-2">
+                    <Download className="h-4 w-4" />
+                    {t("actress.cvDownload")}
+                  </Button>
+                </a>
+              </div>
+
               <Card className="border border-border">
-                <CardContent className="p-8 space-y-6">
-                  <div>
-                    <h3 className="font-display text-2xl font-bold text-foreground mb-3">{t("actress.cvTraining")}</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• {t("actress.cvTraining1")}</li>
-                      <li>• {t("actress.cvTraining2")}</li>
-                      <li>• {t("actress.cvTraining3")}</li>
+                <CardContent className="p-6 md:p-8 space-y-2">
+                  {/* TEATRE */}
+                  <CvSection title={t("actress.cvTheatre")}>
+                    <WorkTable items={theatreWorks} />
+                  </CvSection>
+
+                  {/* CINEMA */}
+                  <CvSection title={t("actress.cvCinema")}>
+                    <h4 className="font-semibold text-foreground text-sm mb-2">{t("actress.cvFeatureFilms")}</h4>
+                    <WorkTable items={featureFilms} />
+                    <h4 className="font-semibold text-foreground text-sm mt-4 mb-2">{t("actress.cvShortFilms")}</h4>
+                    <WorkTable items={shortFilms} />
+                  </CvSection>
+
+                  {/* COMPANYIES */}
+                  <CvSection title={t("actress.cvCompanies")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      {companies.map((c, i) => <li key={i}>• {c}</li>)}
                     </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-2xl font-bold text-foreground mb-3">{t("actress.cvExperience")}</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• {t("actress.cvExperience1")}</li>
-                      <li>• {t("actress.cvExperience2")}</li>
-                      <li>• {t("actress.cvExperience3")}</li>
+                  </CvSection>
+
+                  {/* DOCÈNCIA */}
+                  <CvSection title={t("actress.cvTeaching")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• 2022 Festival Impro Salento</li>
+                      <li>• 2009/Actualment: Cooperativa Artistes Pedagogs. Teatre Teràpia per a grups i empreses</li>
+                      <li>• Extraescolars per escoles i Instituts</li>
+                      <li>• Escola de teatre Complot Escénico</li>
                     </ul>
-                  </div>
+                  </CvSection>
+
+                  {/* TEATRE SOCIAL */}
+                  <CvSection title={t("actress.cvSocialTheatre")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      {socialTheatreProjects.map((p, i) => <li key={i}>• {p}</li>)}
+                    </ul>
+                  </CvSection>
+
+                  {/* VEU I CANT */}
+                  <CvSection title={t("actress.cvVoiceSinging")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Mètode Linklater: Alyssa Ciccarello</li>
+                      <li>• Cant: Marc Durandeau</li>
+                      <li>• Veu: Silvia Molins, Isabelle Bres</li>
+                    </ul>
+                  </CvSection>
+
+                  {/* INTERPRETACIÓ */}
+                  <CvSection title={t("actress.cvActing")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Càmera: Esteve Rovira, Daniel Sesé, Alfonso Albacete</li>
+                      <li>• Escuela Eolia: tècnica Daulte, Roger Pera, Roberto Cairo, Ana Casas, Mercé Solé, Santi Ibáñez, Tony Corvillo, Eugenio Barba i Julia Varley</li>
+                      <li>• Programa de Tècnica Meisner: Javier Galitó-Cava, Tècnica Alexander Anna Sabaté, Sonia Espinosa</li>
+                      <li>• Risk & Danger: Valentina Callandriello</li>
+                    </ul>
+                  </CvSection>
+
+                  {/* COS I DANSA */}
+                  <CvSection title={t("actress.cvBodyDance")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Teatre físic: escuela Moveo</li>
+                      <li>• Mimo i màscara: Martin Curletto</li>
+                      <li>• Moviment: Neus Suñé</li>
+                      <li>• Dansa: Ballet, Dansa del Ventre, Dansa africana, Jazz, Balls de Saló, Patinatge Artístic</li>
+                    </ul>
+                  </CvSection>
+
+                  {/* IMPROVISACIÓ */}
+                  <CvSection title={t("actress.cvImprovisation")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Barcelona Improv Group</li>
+                      <li>• Jorge Yamam - Teatre Eolia</li>
+                      <li>• Nadia Zuñiga - El Ensamble Teatro Playback Barcelona</li>
+                      <li>• Carla Rovira - Parking Shakespeare / Teatre Grec</li>
+                      <li>• Jules Munns - Greek International Improv Comedy Festival</li>
+                      <li>• Diego Ingold - Festival Barcelona Improvisa</li>
+                      <li>• Cheolsung Lee - Festival Grec Barcelona</li>
+                      <li>• Feña Ortalli - BIG IF 5 Barcelona</li>
+                      <li>• Alain Chipot - TeatreNeu Barcelona</li>
+                    </ul>
+                  </CvSection>
+
+                  {/* MASTERCLASS */}
+                  <CvSection title={t("actress.cvMasterclass")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Joe Bill: Scenes</li>
+                      <li>• Heather Urquhart: Intimacy and naturalism</li>
+                      <li>• Jaklene Vukasinovic: Making a monster</li>
+                      <li>• Menelaos Prokos: Life on stage</li>
+                      <li>• Planeta Impro, Angel Galán</li>
+                      <li>• David Moncada: Dramaturgia</li>
+                      <li>• José Malaguilla: Imprólogo</li>
+                      <li>• Rafa Villena: Contexto y valores</li>
+                    </ul>
+                  </CvSection>
+
+                  {/* ARTS MARCIALS */}
+                  <CvSection title={t("actress.cvMartialArts")}>
+                    <p className="text-sm text-muted-foreground">Defensa personal, Aikido, Kuk Sool Won</p>
+                  </CvSection>
+
+                  {/* FORMACIÓ ACADÈMICA */}
+                  <CvSection title={t("actress.cvEducation")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Màster en Teatreteràpia - ISEP</li>
+                      <li>• Llicenciatura en Psicologia - UAB</li>
+                    </ul>
+                  </CvSection>
+
+                  {/* IDIOMES */}
+                  <CvSection title={t("actress.cvLanguages")}>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• {t("actress.cvLanguagesDetail")}</li>
+                      <li>• {t("actress.cvDrivingDetail")}</li>
+                    </ul>
+                  </CvSection>
                 </CardContent>
               </Card>
             </ScrollReveal>
