@@ -8,7 +8,7 @@ const placeholderPhotos = [
   { id: 2, url: "/images/actress-photo-2.jpeg", alt: "Diana vertical negre" },
   { id: 3, url: "/images/actress-photo-3.jpeg", alt: "Diana cos sencer" },
   { id: 4, url: "/images/actress-photo-4.jpeg", alt: "Escena teatral" },
-  { id: 5, url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop", alt: "Photo 5" },
+  { id: 5, url: "/images/actress-photo-5.jpeg", alt: "Diana frontal somriure" },
   { id: 6, url: "/images/actress-photo-6.jpeg", alt: "Actuació teatral" },
 ];
 
