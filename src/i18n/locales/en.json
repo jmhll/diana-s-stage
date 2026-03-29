@@ -58,8 +58,11 @@
   "presenter": {
     "title": "Presenter",
     "subtitle": "Hosted events and galas",
-    "videosTitle": "Event videos",
-    "featuredTitle": "Featured events"
+    "photosTitle": "Events",
+    "featuredTitle": "Featured events",
+    "photo_premis": "Awards Ceremony 35th Literary Contest of Nou Barris",
+    "photo_endofest": "Ulisses at Endofest – Music Festival",
+    "photo_forum": "20th Research Forum – Molins de Rei City Council"
   },
   "services": {
     "title": "Services",
