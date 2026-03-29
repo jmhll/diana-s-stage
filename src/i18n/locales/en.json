@@ -62,7 +62,12 @@
     "featuredTitle": "Featured events",
     "photo_premis": "Awards Ceremony 35th Literary Contest of Nou Barris",
     "photo_endofest": "Ulisses at Endofest – Music Festival",
-    "photo_forum": "20th Research Forum – Molins de Rei City Council"
+    "photo_forum": "20th Research Forum – Molins de Rei City Council",
+    "featured_endofest": "Ulisses at Endofest – Music Festival",
+    "featured_forum": "20th Research Forum – Molins de Rei City Council",
+    "featured_migrant": "International Migrants Day – Teatre Principal de Terrassa",
+    "featured_somriures": "Gala Somriures – Torre Llobeta",
+    "featured_concurs": "Awards Ceremony 35th Literary Contest of Nou Barris"
   },
   "services": {
     "title": "Services",

@@ -62,7 +62,12 @@
     "featuredTitle": "Eventos destacados",
     "photo_premis": "Ceremonia de Entrega de Premios 35º Concurso Literario de Nou Barris",
     "photo_endofest": "Ulisses por Endofest – Festival de música",
-    "photo_forum": "20º Foro de Trabajos de Investigación – Ayuntamiento Molins de Rei"
+    "photo_forum": "20º Foro de Trabajos de Investigación – Ayuntamiento Molins de Rei",
+    "featured_endofest": "Ulisses por Endofest – Festival de música",
+    "featured_forum": "20º Foro de Trabajos de Investigación – Ayuntamiento Molins de Rei",
+    "featured_migrant": "Día Internacional de la Persona Migrante – Teatro Principal de Terrassa",
+    "featured_somriures": "Gala Somriures – Torre Llobeta",
+    "featured_concurs": "Ceremonia de Entrega de Premios 35º Concurso Literario de Nou Barris"
   },
   "services": {
     "title": "Servicios",
