@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import ScrollReveal from "@/components/ScrollReveal";
-import ScrollReveal from "@/components/ScrollReveal";
 import imgPremis from "@/assets/presentadora_premis.jpeg";
 import imgEndofest from "@/assets/presentadora_endofest.jpg";
 import imgForum from "@/assets/presentadora_forum.jpg";
