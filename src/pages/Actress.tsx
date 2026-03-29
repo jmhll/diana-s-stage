@@ -14,11 +14,7 @@ const placeholderPhotos = [
   { id: 6, url: "/images/actress-photo-6.jpeg", alt: "Actuació teatral" },
 ];
 
-const placeholderShows = [
-  { title: "Monòleg 'Llum i Ombra'", year: "2025", venue: "Teatre Lliure" },
-  { title: "L'última carta", year: "2024", venue: "Teatre Nacional" },
-  { title: "Somnis d'hivern", year: "2023", venue: "Sala Beckett" },
-];
+const showKeys = ["voces", "tesoro", "escenas"] as const;
 
 const theatreWorks = [
   { year: "2025", title: "Elefant a la sala", role: "Coral" },
