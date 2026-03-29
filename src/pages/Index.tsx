@@ -64,7 +64,7 @@ const Index = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=1920&h=1080&fit=crop')",
+              "url('/images/hero-diana.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-background" />
