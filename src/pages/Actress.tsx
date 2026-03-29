@@ -82,6 +82,15 @@ const Actress = () => {
           <TabsContent value="shows">
             <ScrollReveal>
               <p className="text-muted-foreground mb-6">{t("actress.showsDesc")}</p>
+              <div className="mb-8 rounded-lg overflow-hidden">
+                <video
+                  controls
+                  className="w-full max-h-[500px] object-contain bg-black"
+                  preload="metadata"
+                >
+                  <source src="/videos/espectacle-impro.mp4" type="video/mp4" />
+                </video>
+              </div>
               <div className="space-y-4">
                 {placeholderShows.map((show, i) => (
                   <Card key={i} className="border border-border hover:border-primary/30 transition-colors">
