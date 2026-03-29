@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Card, CardContent } from "@/components/ui/card";
+import ScrollReveal from "@/components/ScrollReveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import imgPremis from "@/assets/presentadora_premis.jpeg";
 import imgEndofest from "@/assets/presentadora_endofest.jpg";
@@ -48,31 +48,6 @@ const Presenter = () => {
         </div>
       </section>
 
-      {/* Featured Events */}
-      <section className="container mx-auto px-4 py-16">
-        <ScrollReveal>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-8">
-            {t("presenter.featuredTitle")}
-          </h2>
-        </ScrollReveal>
-        <div className="space-y-4">
-          {featuredEvents.map((event, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <Card className="border border-border hover:border-primary/30 transition-colors">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-display text-xl font-semibold text-foreground mb-1">{event.title}</h3>
-                      <p className="text-sm text-muted-foreground">{event.description}</p>
-                    </div>
-                    <span className="text-sm font-medium text-primary shrink-0">{event.year}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
     </div>
   );
 };
