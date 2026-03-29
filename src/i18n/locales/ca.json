@@ -57,9 +57,12 @@
   },
   "presenter": {
     "title": "Presentadora",
-    "subtitle": "Esdeveniments i galas presentades",
-    "videosTitle": "Vídeos d'esdeveniments",
-    "featuredTitle": "Esdeveniments destacats"
+    "subtitle": "Esdeveniments i gales presentades",
+    "photosTitle": "Esdeveniments",
+    "featuredTitle": "Esdeveniments destacats",
+    "photo_premis": "Cerimònia de Lliurament de Premis 35è Concurs Literari de Nou Barris",
+    "photo_endofest": "Ulisses per Endofest – Festival de música",
+    "photo_forum": "20è Fòrum de Treballs de Recerca – Ajuntament Molins de Rei"
   },
   "services": {
     "title": "Serveis",
