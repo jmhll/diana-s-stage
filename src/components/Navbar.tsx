@@ -55,8 +55,8 @@ const Navbar = () => {
     >
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="font-display text-2xl font-bold text-primary tracking-wide">
-          Diana Fes
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="Fes Diana" className="h-9" />
         </Link>
 
         {/* Desktop nav */}

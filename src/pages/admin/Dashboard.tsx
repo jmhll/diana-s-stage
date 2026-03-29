@@ -16,6 +16,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { useState } from "react";
+import logo from "@/assets/logo.png";
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -63,8 +64,8 @@ const Dashboard = () => {
         }`}
       >
         <div className="p-4 border-b border-border flex items-center justify-between">
-          <Link to="/" className="font-display text-xl font-bold text-primary">
-            Diana Fes
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Fes Diana" className="h-8" />
           </Link>
           <Button
             variant="ghost"
