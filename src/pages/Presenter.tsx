@@ -8,11 +8,6 @@ import imgForum from "@/assets/presentadora_forum.jpg";
 const photoKeys = ["premis", "endofest", "forum"] as const;
 const photoImages = [imgPremis, imgEndofest, imgForum];
 
-const featuredEvents = [
-  { title: "Gala Premis Cultura", year: "2025", description: "Presentació de la gala anual dels premis de cultura de Catalunya." },
-  { title: "Nit de la Ciència", year: "2024", description: "Conducció de la nit de divulgació científica al CosmoCaixa." },
-  { title: "Festival Arts Barcelona", year: "2023", description: "Mestra de cerimònies del festival internacional d'arts escèniques." },
-];
 
 const Presenter = () => {
   const { t } = useTranslation();
