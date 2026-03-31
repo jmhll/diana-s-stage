@@ -13,7 +13,6 @@ import {
   Menu,
   X,
   UserCircle,
-  Briefcase,
 } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.png";
@@ -34,7 +33,7 @@ const Dashboard = () => {
     { to: "/admin", icon: LayoutDashboard, label: t("admin.overview"), exact: true },
     { to: "/admin/gallery", icon: Image, label: t("admin.gallery") },
     { to: "/admin/events", icon: Calendar, label: t("admin.events") },
-    { to: "/admin/services", icon: Briefcase, label: t("admin.services") },
+    
     ...(role === "admin"
       ? [
           { to: "/admin/messages", icon: Mail, label: t("admin.messages") },
