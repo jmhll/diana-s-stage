@@ -179,25 +179,39 @@ const AdminUsers = () => {
                       </SelectContent>
                     </Select>
                     {!isCurrentUser && (
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>{t("admin.confirmDelete")}</AlertDialogTitle>
-                            <AlertDialogDescription>{t("admin.confirmDeleteUser")}</AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>{t("common.back")}</AlertDialogCancel>
-                            <AlertDialogAction onClick={() => handleDelete(user.user_id)}>
-                              {t("admin.delete")}
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-muted-foreground hover:text-primary"
+                          onClick={() => {
+                            setPasswordUserId(user.user_id);
+                            setNewPassword("");
+                            setPasswordDialogOpen(true);
+                          }}
+                        >
+                          <KeyRound className="h-4 w-4" />
+                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>{t("admin.confirmDelete")}</AlertDialogTitle>
+                              <AlertDialogDescription>{t("admin.confirmDeleteUser")}</AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>{t("common.back")}</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => handleDelete(user.user_id)}>
+                                {t("admin.delete")}
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </>
                     )}
                   </div>
                 </CardContent>
