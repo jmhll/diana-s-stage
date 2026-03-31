@@ -1,0 +1,1 @@
+UPDATE gallery_items SET title = 'Taller dones emprenedores' WHERE id = '53750a52-0122-4ea3-8b8a-1475f70f8d56';
