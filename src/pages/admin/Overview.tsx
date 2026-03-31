@@ -10,17 +10,15 @@ const Overview = () => {
 
   useEffect(() => {
     const fetchCounts = async () => {
-      const [g, e, m, s] = await Promise.all([
+      const [g, e, m] = await Promise.all([
         supabase.from("gallery_items").select("id", { count: "exact", head: true }),
         supabase.from("events").select("id", { count: "exact", head: true }),
         supabase.from("contact_messages").select("id", { count: "exact", head: true }),
-        supabase.from("services").select("id", { count: "exact", head: true }),
       ]);
       setCounts({
         gallery: g.count ?? 0,
         events: e.count ?? 0,
         messages: m.count ?? 0,
-        services: s.count ?? 0,
       });
     };
     fetchCounts();
