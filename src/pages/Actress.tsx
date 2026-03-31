@@ -298,6 +298,7 @@ const Actress = () => {
                   {/* FORMACIÓ ACADÈMICA */}
                   <CvSection title={t("actress.cvEducation")}>
                     <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Graduada tècnica Meisner</li>
                       <li>• Màster en Teatreteràpia - ISEP</li>
                       <li>• Llicenciatura en Psicologia - UAB</li>
                     </ul>
