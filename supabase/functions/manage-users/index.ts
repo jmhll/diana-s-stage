@@ -87,6 +87,56 @@ Deno.serve(async (req) => {
       });
     }
 
+    if (action === "update_password") {
+      const { user_id, new_password } = body;
+      if (!user_id || !new_password || new_password.length < 6) {
+        return new Response(JSON.stringify({ error: "Password must be at least 6 characters" }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const { error: updateError } = await adminClient.auth.admin.updateUserById(user_id, {
+        password: new_password,
+      });
+      if (updateError) throw updateError;
+
+      // Get user email to send notification
+      const { data: userData } = await adminClient.auth.admin.getUserById(user_id);
+      if (userData?.user?.email) {
+        const resendApiKey = Deno.env.get("RESEND_API_KEY");
+        if (resendApiKey) {
+          try {
+            await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${resendApiKey}`,
+              },
+              body: JSON.stringify({
+                from: "Diana Fes <onboarding@resend.dev>",
+                to: [userData.user.email],
+                subject: "La teva contrasenya ha estat actualitzada",
+                html: `<div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px">
+                  <h2 style="color:#333">Contrasenya actualitzada</h2>
+                  <p>Hola,</p>
+                  <p>La teva contrasenya ha estat modificada per un administrador.</p>
+                  <p>La teva nova contrasenya és: <strong style="background:#f0f0f0;padding:4px 8px;border-radius:4px">${new_password.replace(/[<>&"']/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#039;' }[c] || c))}</strong></p>
+                  <p>Et recomanem canviar-la al més aviat possible.</p>
+                  <p style="color:#999;font-size:12px;margin-top:30px">Diana Fes - Panell d'administració</p>
+                </div>`,
+              }),
+            });
+          } catch (emailErr) {
+            console.error("Failed to send password email:", emailErr);
+          }
+        }
+      }
+
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     return new Response(JSON.stringify({ error: "Unknown action" }), {
       status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

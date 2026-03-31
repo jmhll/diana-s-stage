@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
-import { Plus, Trash2, Shield } from "lucide-react";
+import { Plus, Trash2, Shield, KeyRound } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Profile = Tables<"profiles">;
@@ -28,6 +28,9 @@ const AdminUsers = () => {
   const [users, setUsers] = useState<UserWithRole[]>([]);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
+  const [passwordUserId, setPasswordUserId] = useState<string | null>(null);
+  const [newPassword, setNewPassword] = useState("");
   const [form, setForm] = useState({ email: "", password: "", display_name: "", role: "gestor" as "admin" | "gestor" });
 
   const fetchUsers = async () => {
@@ -82,6 +85,23 @@ const AdminUsers = () => {
     } else {
       toast({ title: t("admin.roleUpdated") });
       fetchUsers();
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (!passwordUserId || !newPassword || newPassword.length < 6) return;
+    setLoading(true);
+    const { data, error } = await supabase.functions.invoke("manage-users", {
+      body: { action: "update_password", user_id: passwordUserId, new_password: newPassword },
+    });
+    setLoading(false);
+    if (error || data?.error) {
+      toast({ title: t("common.error"), description: data?.error || error?.message, variant: "destructive" });
+    } else {
+      toast({ title: t("admin.passwordChanged") });
+      setPasswordDialogOpen(false);
+      setNewPassword("");
+      setPasswordUserId(null);
     }
   };
 
@@ -159,25 +179,39 @@ const AdminUsers = () => {
                       </SelectContent>
                     </Select>
                     {!isCurrentUser && (
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>{t("admin.confirmDelete")}</AlertDialogTitle>
-                            <AlertDialogDescription>{t("admin.confirmDeleteUser")}</AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>{t("common.back")}</AlertDialogCancel>
-                            <AlertDialogAction onClick={() => handleDelete(user.user_id)}>
-                              {t("admin.delete")}
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-muted-foreground hover:text-primary"
+                          onClick={() => {
+                            setPasswordUserId(user.user_id);
+                            setNewPassword("");
+                            setPasswordDialogOpen(true);
+                          }}
+                        >
+                          <KeyRound className="h-4 w-4" />
+                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>{t("admin.confirmDelete")}</AlertDialogTitle>
+                              <AlertDialogDescription>{t("admin.confirmDeleteUser")}</AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>{t("common.back")}</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => handleDelete(user.user_id)}>
+                                {t("admin.delete")}
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </>
                     )}
                   </div>
                 </CardContent>
@@ -186,6 +220,32 @@ const AdminUsers = () => {
           })}
         </div>
       )}
+
+      <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("admin.changePassword")}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>{t("admin.newPassword")}</Label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder={t("admin.passwordMinLength")}
+              />
+            </div>
+            <Button
+              onClick={handleChangePassword}
+              disabled={loading || newPassword.length < 6}
+              className="w-full"
+            >
+              {loading ? t("common.loading") : t("admin.changePassword")}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

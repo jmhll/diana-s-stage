@@ -188,6 +188,10 @@
     "description": "Description",
     "icon": "Icon",
     "sortOrder": "Sort order",
-    "itemSaved": "Item saved"
+    "itemSaved": "Item saved",
+    "changePassword": "Change password",
+    "newPassword": "New password",
+    "passwordChanged": "Password updated and email sent",
+    "passwordMinLength": "Minimum 6 characters"
   }
 }

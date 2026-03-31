@@ -188,6 +188,10 @@
     "description": "Descripció",
     "icon": "Icona",
     "sortOrder": "Ordre",
-    "itemSaved": "Element guardat"
+    "itemSaved": "Element guardat",
+    "changePassword": "Canviar contrasenya",
+    "newPassword": "Nova contrasenya",
+    "passwordChanged": "Contrasenya actualitzada i email enviat",
+    "passwordMinLength": "Mínim 6 caràcters"
   }
 }
