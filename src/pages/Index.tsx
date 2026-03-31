@@ -40,7 +40,7 @@ const Index = () => {
       title: t("nav.actress"),
       description: t("actress.subtitle"),
       to: "/actriu",
-      image: actressImg,
+      image: "/images/actress-photo-4.jpeg",
     },
     {
       icon: Mic,
