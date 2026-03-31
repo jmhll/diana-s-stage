@@ -65,7 +65,7 @@ const App = () => (
                 }
               />
               <Route path="settings" element={<AdminSettings />} />
-              <Route path="services" element={<AdminServices />} />
+              
               <Route
                 path="users"
                 element={
