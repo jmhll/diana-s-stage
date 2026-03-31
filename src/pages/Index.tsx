@@ -55,7 +55,7 @@ const Index = () => {
       title: t("nav.services"),
       description: t("services.subtitle"),
       to: "/serveis",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop",
+      image: servicesImg,
     },
   ];
 
