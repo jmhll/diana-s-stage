@@ -188,6 +188,10 @@
     "description": "Descripción",
     "icon": "Icono",
     "sortOrder": "Orden",
-    "itemSaved": "Elemento guardado"
+    "itemSaved": "Elemento guardado",
+    "changePassword": "Cambiar contraseña",
+    "newPassword": "Nueva contraseña",
+    "passwordChanged": "Contraseña actualizada y email enviado",
+    "passwordMinLength": "Mínimo 6 caracteres"
   }
 }
