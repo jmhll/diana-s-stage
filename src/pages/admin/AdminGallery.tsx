@@ -168,19 +168,33 @@ const AdminGallery = () => {
                       }}
                       onClick={(e) => {
                         const vid = e.currentTarget;
+                        const overlay = vid.nextElementSibling as HTMLElement;
                         if (vid.paused) {
                           vid.controls = true;
                           vid.muted = false;
                           vid.play();
+                          if (overlay) overlay.style.display = "none";
                         } else {
                           vid.pause();
                           vid.controls = false;
+                          if (overlay) overlay.style.display = "flex";
                         }
+                      }}
+                      onPause={(e) => {
+                        const overlay = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (overlay) overlay.style.display = "flex";
+                        e.currentTarget.controls = false;
                       }}
                     />
                     <div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                      style={{ display: "flex" }}
+                      className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                      onClick={(e) => {
+                        const vid = (e.currentTarget.previousElementSibling) as HTMLVideoElement;
+                        vid.controls = true;
+                        vid.muted = false;
+                        vid.play();
+                        e.currentTarget.style.display = "none";
+                      }}
                     >
                       <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                         <Play className="h-5 w-5 text-white ml-0.5" />
