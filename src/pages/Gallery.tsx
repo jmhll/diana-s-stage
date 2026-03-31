@@ -121,7 +121,16 @@ const Gallery = () => {
         <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-0">
           {selected && (
             <div className="relative">
-              <img src={selected.media_url} alt={selected.title} className="w-full h-auto max-h-[80vh] object-contain" />
+              {selected.type === "video" ? (
+                <video
+                  src={selected.media_url}
+                  controls
+                  autoPlay
+                  className="w-full max-h-[80vh]"
+                />
+              ) : (
+                <img src={selected.media_url} alt={selected.title} className="w-full h-auto max-h-[80vh] object-contain" />
+              )}
               <div className="p-4">
                 <h3 className="font-display text-xl font-semibold text-foreground">{selected.title}</h3>
                 {selected.description && (
