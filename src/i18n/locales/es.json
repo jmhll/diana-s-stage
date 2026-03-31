@@ -192,6 +192,9 @@
     "changePassword": "Cambiar contraseña",
     "newPassword": "Nueva contraseña",
     "passwordChanged": "Contraseña actualizada y email enviado",
-    "passwordMinLength": "Mínimo 6 caracteres"
+    "passwordMinLength": "Mínimo 6 caracteres",
+    "totalVisits": "Visitas totales",
+    "trafficTitle": "Tráfico de los últimos 30 días",
+    "visits": "Visitas"
   }
 }

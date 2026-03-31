@@ -192,6 +192,9 @@
     "changePassword": "Canviar contrasenya",
     "newPassword": "Nova contrasenya",
     "passwordChanged": "Contrasenya actualitzada i email enviat",
-    "passwordMinLength": "Mínim 6 caràcters"
+    "passwordMinLength": "Mínim 6 caràcters",
+    "totalVisits": "Visites totals",
+    "trafficTitle": "Tràfic dels últims 30 dies",
+    "visits": "Visites"
   }
 }

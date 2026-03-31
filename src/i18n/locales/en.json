@@ -192,6 +192,9 @@
     "changePassword": "Change password",
     "newPassword": "New password",
     "passwordChanged": "Password updated and email sent",
-    "passwordMinLength": "Minimum 6 characters"
+    "passwordMinLength": "Minimum 6 characters",
+    "totalVisits": "Total visits",
+    "trafficTitle": "Traffic over the last 30 days",
+    "visits": "Visits"
   }
 }
