@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Camera, Mic, BookOpen } from "lucide-react";
+import presenterImg from "@/assets/presentadora_premis.jpeg";
+import servicesImg from "@/assets/presentadora_forum.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -38,21 +40,21 @@ const Index = () => {
       title: t("nav.actress"),
       description: t("actress.subtitle"),
       to: "/actriu",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+      image: "/images/actress-photo-4.jpeg",
     },
     {
       icon: Mic,
       title: t("nav.presenter"),
       description: t("presenter.subtitle"),
       to: "/presentadora",
-      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+      image: presenterImg,
     },
     {
       icon: BookOpen,
       title: t("nav.services"),
       description: t("services.subtitle"),
       to: "/serveis",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop",
+      image: servicesImg,
     },
   ];
 
