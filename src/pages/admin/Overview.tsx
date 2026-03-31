@@ -2,25 +2,23 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Image, Calendar, Mail, Briefcase } from "lucide-react";
+import { Image, Calendar, Mail } from "lucide-react";
 
 const Overview = () => {
   const { t } = useTranslation();
-  const [counts, setCounts] = useState({ gallery: 0, events: 0, messages: 0, services: 0 });
+  const [counts, setCounts] = useState({ gallery: 0, events: 0, messages: 0 });
 
   useEffect(() => {
     const fetchCounts = async () => {
-      const [g, e, m, s] = await Promise.all([
+      const [g, e, m] = await Promise.all([
         supabase.from("gallery_items").select("id", { count: "exact", head: true }),
         supabase.from("events").select("id", { count: "exact", head: true }),
         supabase.from("contact_messages").select("id", { count: "exact", head: true }),
-        supabase.from("services").select("id", { count: "exact", head: true }),
       ]);
       setCounts({
         gallery: g.count ?? 0,
         events: e.count ?? 0,
         messages: m.count ?? 0,
-        services: s.count ?? 0,
       });
     };
     fetchCounts();
@@ -30,7 +28,6 @@ const Overview = () => {
     { icon: Image, label: t("admin.gallery"), value: counts.gallery, color: "text-primary" },
     { icon: Calendar, label: t("admin.events"), value: counts.events, color: "text-secondary" },
     { icon: Mail, label: t("admin.messages"), value: counts.messages, color: "text-destructive" },
-    { icon: Briefcase, label: t("nav.services"), value: counts.services, color: "text-muted-foreground" },
   ];
 
   return (
