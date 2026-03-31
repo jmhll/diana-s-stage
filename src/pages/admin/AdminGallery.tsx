@@ -155,8 +155,21 @@ const AdminGallery = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {items.map((item) => (
             <Card key={item.id} className="overflow-hidden group relative">
-              <div className="aspect-square">
-                <img src={item.media_url} alt={item.title} className="w-full h-full object-cover" />
+              <div className="aspect-square bg-muted">
+                {item.type === "video" ? (
+                  <video
+                    src={item.media_url}
+                    className="w-full h-full object-cover"
+                    muted
+                    preload="metadata"
+                    onLoadedData={(e) => {
+                      const vid = e.currentTarget;
+                      vid.currentTime = 1;
+                    }}
+                  />
+                ) : (
+                  <img src={item.media_url} alt={item.title} className="w-full h-full object-cover" />
+                )}
               </div>
               <CardContent className="p-3">
                 <p className="text-sm font-medium truncate">{item.title}</p>
