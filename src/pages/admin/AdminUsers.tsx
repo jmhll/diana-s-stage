@@ -28,6 +28,9 @@ const AdminUsers = () => {
   const [users, setUsers] = useState<UserWithRole[]>([]);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
+  const [passwordUserId, setPasswordUserId] = useState<string | null>(null);
+  const [newPassword, setNewPassword] = useState("");
   const [form, setForm] = useState({ email: "", password: "", display_name: "", role: "gestor" as "admin" | "gestor" });
 
   const fetchUsers = async () => {
