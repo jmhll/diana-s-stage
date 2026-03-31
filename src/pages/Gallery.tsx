@@ -82,16 +82,28 @@ const Gallery = () => {
                   className="relative aspect-square overflow-hidden rounded-lg cursor-pointer group"
                   onClick={() => setSelected(item)}
                 >
-                  <img
-                    src={item.media_url}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
+                  {item.type === "video" ? (
+                    <video
+                      src={item.media_url}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      muted
+                      preload="metadata"
+                      onLoadedData={(e) => {
+                        e.currentTarget.currentTime = 1;
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={item.media_url}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-colors flex items-center justify-center">
                     {item.type === "video" && (
-                      <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
-                        <Play className="h-5 w-5 text-secondary-foreground ml-0.5" />
+                      <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm opacity-80 group-hover:opacity-100 transition-opacity">
+                        <Play className="h-5 w-5 text-white ml-0.5" />
                       </div>
                     )}
                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
@@ -109,7 +121,16 @@ const Gallery = () => {
         <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-0">
           {selected && (
             <div className="relative">
-              <img src={selected.media_url} alt={selected.title} className="w-full h-auto max-h-[80vh] object-contain" />
+              {selected.type === "video" ? (
+                <video
+                  src={selected.media_url}
+                  controls
+                  autoPlay
+                  className="w-full max-h-[80vh]"
+                />
+              ) : (
+                <img src={selected.media_url} alt={selected.title} className="w-full h-auto max-h-[80vh] object-contain" />
+              )}
               <div className="p-4">
                 <h3 className="font-display text-xl font-semibold text-foreground">{selected.title}</h3>
                 {selected.description && (
