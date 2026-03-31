@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Play } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type GalleryItem = Tables<"gallery_items">;
@@ -155,18 +155,52 @@ const AdminGallery = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {items.map((item) => (
             <Card key={item.id} className="overflow-hidden group relative">
-              <div className="aspect-square bg-muted">
+              <div className="aspect-square bg-muted relative">
                 {item.type === "video" ? (
-                  <video
-                    src={item.media_url}
-                    className="w-full h-full object-cover"
-                    muted
-                    preload="metadata"
-                    onLoadedData={(e) => {
-                      const vid = e.currentTarget;
-                      vid.currentTime = 1;
-                    }}
-                  />
+                  <>
+                    <video
+                      src={item.media_url}
+                      className="w-full h-full object-cover"
+                      muted
+                      preload="metadata"
+                      onLoadedData={(e) => {
+                        e.currentTarget.currentTime = 1;
+                      }}
+                      onClick={(e) => {
+                        const vid = e.currentTarget;
+                        const overlay = vid.nextElementSibling as HTMLElement;
+                        if (vid.paused) {
+                          vid.controls = true;
+                          vid.muted = false;
+                          vid.play();
+                          if (overlay) overlay.style.display = "none";
+                        } else {
+                          vid.pause();
+                          vid.controls = false;
+                          if (overlay) overlay.style.display = "flex";
+                        }
+                      }}
+                      onPause={(e) => {
+                        const overlay = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (overlay) overlay.style.display = "flex";
+                        e.currentTarget.controls = false;
+                      }}
+                    />
+                    <div
+                      className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                      onClick={(e) => {
+                        const vid = (e.currentTarget.previousElementSibling) as HTMLVideoElement;
+                        vid.controls = true;
+                        vid.muted = false;
+                        vid.play();
+                        e.currentTarget.style.display = "none";
+                      }}
+                    >
+                      <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                        <Play className="h-5 w-5 text-white ml-0.5" />
+                      </div>
+                    </div>
+                  </>
                 ) : (
                   <img src={item.media_url} alt={item.title} className="w-full h-full object-cover" />
                 )}
