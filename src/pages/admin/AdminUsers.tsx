@@ -220,6 +220,32 @@ const AdminUsers = () => {
           })}
         </div>
       )}
+
+      <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("admin.changePassword")}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>{t("admin.newPassword")}</Label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder={t("admin.passwordMinLength")}
+              />
+            </div>
+            <Button
+              onClick={handleChangePassword}
+              disabled={loading || newPassword.length < 6}
+              className="w-full"
+            >
+              {loading ? t("common.loading") : t("admin.changePassword")}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
