@@ -121,7 +121,7 @@ const AdminGallery = () => {
                       <SelectItem value="actriu">{t("gallery.actressCategory")}</SelectItem>
                       <SelectItem value="presentadora">{t("gallery.presenterCategory")}</SelectItem>
                       <SelectItem value="serveis">{t("nav.services")}</SelectItem>
-                      <SelectItem value="general">General</SelectItem>
+                      
                     </SelectContent>
                   </Select>
                 </div>
