@@ -48,7 +48,7 @@ const Index = () => {
       title: t("nav.presenter"),
       description: t("presenter.subtitle"),
       to: "/presentadora",
-      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+      image: presenterImg,
     },
     {
       icon: BookOpen,
