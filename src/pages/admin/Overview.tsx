@@ -28,7 +28,6 @@ const Overview = () => {
     { icon: Image, label: t("admin.gallery"), value: counts.gallery, color: "text-primary" },
     { icon: Calendar, label: t("admin.events"), value: counts.events, color: "text-secondary" },
     { icon: Mail, label: t("admin.messages"), value: counts.messages, color: "text-destructive" },
-    { icon: Briefcase, label: t("nav.services"), value: counts.services, color: "text-muted-foreground" },
   ];
 
   return (
