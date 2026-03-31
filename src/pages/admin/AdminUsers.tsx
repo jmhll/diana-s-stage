@@ -88,6 +88,23 @@ const AdminUsers = () => {
     }
   };
 
+  const handleChangePassword = async () => {
+    if (!passwordUserId || !newPassword || newPassword.length < 6) return;
+    setLoading(true);
+    const { data, error } = await supabase.functions.invoke("manage-users", {
+      body: { action: "update_password", user_id: passwordUserId, new_password: newPassword },
+    });
+    setLoading(false);
+    if (error || data?.error) {
+      toast({ title: t("common.error"), description: data?.error || error?.message, variant: "destructive" });
+    } else {
+      toast({ title: t("admin.passwordChanged") });
+      setPasswordDialogOpen(false);
+      setNewPassword("");
+      setPasswordUserId(null);
+    }
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
