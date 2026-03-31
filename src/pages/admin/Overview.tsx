@@ -6,7 +6,7 @@ import { Image, Calendar, Mail } from "lucide-react";
 
 const Overview = () => {
   const { t } = useTranslation();
-  const [counts, setCounts] = useState({ gallery: 0, events: 0, messages: 0, services: 0 });
+  const [counts, setCounts] = useState({ gallery: 0, events: 0, messages: 0 });
 
   useEffect(() => {
     const fetchCounts = async () => {
