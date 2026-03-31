@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Image, Calendar, Mail, Briefcase } from "lucide-react";
+import { Image, Calendar, Mail } from "lucide-react";
 
 const Overview = () => {
   const { t } = useTranslation();
